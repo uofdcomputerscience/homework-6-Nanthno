@@ -12,16 +12,36 @@ class ViewController: UIViewController {
 
 
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var toggle: UISwitch!
+    @IBOutlet weak var selector: UISegmentedControl!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    @IBOutlet weak var finishButton: UIButton!
+    
 
-    
+    private func isOpen() {
+        if(button.isSelected && toggle.isOn && selector.selectedSegmentIndex == 1) {
+            finishButton.isEnabled = true
+        }
+        else {
+            finishButton.isEnabled = false
+        }
+    }
     
     @IBAction func buttonPressed(_ sender: Any) {
         button.isSelected.toggle()
+        isOpen()
     }
+    
+    @IBAction func toggled(_ sender: Any) {
+        isOpen()
+    }
+    
+    
+    @IBAction func selectChange(_ sender: Any) {
+        isOpen()
+    }
+    
+    
+    
 }
 
